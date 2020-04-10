@@ -4,9 +4,9 @@ require_once "utilisateur.php";
 
 require_once "tache.php";
 
-$root = isset($_POST["root"])? $_POST["root"] : "home";
+$route = isset($_POST["root"])? $_POST["root"] : "home";
 
-switch($root) {
+switch($route) {
     case "home" : $root = retourMaison();
         break;
     case "insert_user" : insert_user();
@@ -40,7 +40,7 @@ $utilisateur->insert_user();
 </head>
 <body>
 
-    <?php require "$root" ?>
+    <?php require "form.php" ?>
 
 
 </body>
