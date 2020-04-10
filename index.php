@@ -1,10 +1,23 @@
 <?php
 
-$utilisateur = (isset($_POST))? "accueil.php" : "index.php";
-
 require_once "utilisateur.php";
 
 require_once "tache.php";
+
+$root = isset($_POST["root"])? $_POST["root"] : "home";
+
+switch($root) {
+    case "home" : $root = retourMaison();
+        break;
+    case "insert_user" : insert_user();
+        break;
+    default : retourMaison();
+}
+
+
+function retourMaison() {
+    return "accueil.php";
+}
 
 $utilisateur = new Utilisateur("","");
 
@@ -26,22 +39,9 @@ $utilisateur->insert_user();
     <link rel="stylesheet" type="text/css" href="cv.css">
 </head>
 <body>
-    <header id="entete">
-    </header>
-    <div id="encadre">
-        <article id="cadre">
-            <p>
-            <form method="post"action="index.php">
-                 <fieldset>
-                  <legend>information principale</legend>
-                    <label for="pseudo"> pseudo</label>
-                    <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" required="required"/><br>
-                    <label for="pass">mot de passe</label>
-                    <input type="password"name="pass" id="pass" placeholder="Votre mot de passe" required="required"/>
-                    <input type="submit" value="Envoyer">
-                 </fieldset>
-            </p>
-        </article>
-    </div>
+
+    <?php require "$root" ?>
+
+
 </body>
 </html>
