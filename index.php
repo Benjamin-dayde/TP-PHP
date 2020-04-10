@@ -1,18 +1,18 @@
 <?php
 
-class Utilisateur {
+$utilisateur = (isset($_POST))? "accueil.php" : "index.php";
 
-    insert_user()
+require_once "utilisateur.php";
+
+require_once "tache.php";
+
+$utilisateur = new Utilisateur("","");
+
+$utilisateur->insert_user();
 
 
 
 
-
-}
-
-class Tache {
-
-}
 
 
 ?>
@@ -22,7 +22,7 @@ class Tache {
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>Connection</title>
+    <title>inscription</title>
     <link rel="stylesheet" type="text/css" href="cv.css">
 </head>
 <body>
@@ -35,9 +35,10 @@ class Tache {
                  <fieldset>
                   <legend>information principale</legend>
                     <label for="pseudo"> pseudo</label>
-                    <input type="text" name="pseudo" id="pseudo"placeholder="" required="required"/><br>
+                    <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" required="required"/><br>
                     <label for="pass">mot de passe</label>
-                    <input type="password"name="pass" id="pass"/>
+                    <input type="password"name="pass" id="pass" placeholder="Votre mot de passe" required="required"/>
+                    <input type="submit" value="Envoyer">
                  </fieldset>
             </p>
         </article>
