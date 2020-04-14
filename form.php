@@ -14,7 +14,7 @@
     <div>
         <article>
             <p>
-            <form method="POST"action="index.php?root=insert_user">
+            <form method="POST" action="index.php?route=$return">
                  <fieldset>
                   <legend>information principale</legend>
                     <label for="pseudo"> pseudo</label>

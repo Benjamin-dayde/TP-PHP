@@ -4,19 +4,19 @@ require_once "utilisateur.php";
 
 require_once "tache.php";
 
-$route = isset($_POST["root"])? $_POST["root"] : "home";
+$route = isset($_POST["route"])? $_POST["route"] : "home";
 
 switch($route) {
-    case "home" : $root = retourMaison();
+    case "home" : $return = retourMaison();
         break;
-    case "insert_user" : insert_user();
+    case "formulaire" : insert_user();
         break;
     default : retourMaison();
 }
 
 
 function retourMaison() {
-    return "accueil.php";
+    require "accueil.php";
 }
 
 $utilisateur = new Utilisateur("","");
@@ -39,8 +39,6 @@ $utilisateur->insert_user();
     <link rel="stylesheet" type="text/css" href="cv.css">
 </head>
 <body>
-
-    <?php require "form.php" ?>
 
 
 </body>

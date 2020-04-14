@@ -30,6 +30,7 @@ function setMp($Mp) {
 }
 
 function insert_user(){
+    require 'form.php';
     $this->save_user();
 }
 
