@@ -14,7 +14,7 @@
     <div>
         <article>
             <p>
-            <form method="POST" action="index.php?route=$return">
+            <form method="POST" action="index.php?route=home">
                  <fieldset>
                   <legend>information principale</legend>
                     <label for="pseudo"> pseudo</label>

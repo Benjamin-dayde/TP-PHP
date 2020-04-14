@@ -6,20 +6,18 @@ require_once "utilisateur.php";
 
 require_once "tache.php";
 
-$route = isset($_POST["route"])? $_POST["route"] : "home";
+$route = isset($_GET["route"])? $_GET["route"] : "formulaire";
 
 switch($route) {
-    case "home" : $return = retourMaison();
+    case "home" : require "accueil.php";
         break;
-    case "formulaire" : insert_user();
+    case "formulaire" : require "form.php";
         break;
-    default : retourMaison();
+    default : "formulaire";
 }
 
 
-function retourMaison() {
-    require "accueil.php";
-}
+
 
 $utilisateur = new Utilisateur("","");
 
@@ -45,7 +43,6 @@ var_dump($_COOKIE["pseudo"]);
     <link rel="stylesheet" type="text/css" href="cv.css">
 </head>
 <body>
-
 
 </body>
 </html>
