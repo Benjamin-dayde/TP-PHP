@@ -1,5 +1,7 @@
 <?php
 
+
+
 require_once "utilisateur.php";
 
 require_once "tache.php";
@@ -22,6 +24,10 @@ function retourMaison() {
 $utilisateur = new Utilisateur("","");
 
 $utilisateur->insert_user();
+
+setcookie('pseudo',$_POST["pseudo"], time() + 182 * 24 * 60 * 60 , "/");
+
+var_dump($_COOKIE["pseudo"]);
 
 
 
