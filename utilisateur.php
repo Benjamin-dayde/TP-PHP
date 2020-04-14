@@ -17,7 +17,7 @@ function getPseudo(): string {
 }
 
 function setPseudo($pseudo) {
-    $this->pseudo = $_POST["pseudo"];
+    $this->pseudo = $pseudo;
 }
 
 
@@ -26,21 +26,17 @@ function getMp(): string {
 }
 
 function setMp($Mp) {
-    $this->Mp = $_POST["pass"];
+    $this->Mp = $Mp;
 }
-
-function insert_user(){
-    $this->save_user();
-}
-
-
 
 
 function save_user() {        
 
-$pseudo = fopen("utilisateur.json", "a+");
-fwrite($pseudo, json_encode($_POST));
-fclose($pseudo);
+var_dump($this);
+$user = file_get_contents("utilisateur.json");
+$tableaux = json_decode($user);
+array_push($tableaux,["id"=>sizeof($tableaux)+1, "pseudo"=> $this->pseudo, "motdepasse"=> $this->Mp]);
+file_put_contents("utilisateur.json", json_encode($tableaux));
 
 }
 

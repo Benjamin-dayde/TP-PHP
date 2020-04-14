@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_COOKIE["pseudo"]);
+//var_dump($_COOKIE["pseudo"]);
 
 ?>
 
@@ -18,7 +18,7 @@ var_dump($_COOKIE["pseudo"]);
     <div>
         <article>
             <p>
-            <form method="POST" action="index.php?route=home">
+            <form method="POST" action="index.php?route=insert_user">
                  <fieldset>
                   <legend>information principale</legend>
                     <label for="pseudo"> pseudo</label>

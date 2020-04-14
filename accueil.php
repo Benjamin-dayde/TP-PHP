@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_COOKIE["pseudo"]);
+//var_dump($_COOKIE["pseudo"]);
 
 ?>
 
