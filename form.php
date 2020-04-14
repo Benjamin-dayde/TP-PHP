@@ -1,4 +1,8 @@
+<?php
 
+var_dump($_COOKIE["pseudo"]);
+
+?>
 
 
 <!DOCTYPE html>
