@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 
 require_once "utilisateur.php";
@@ -12,9 +12,13 @@ $route = isset($_GET["route"])? $_GET["route"] : "formulaire";
 switch($route) {
     case "home" : $include = showHome() ;
         break;
-    case "formulaire" : $include = showForm()  ;
+    case "formulaire" : $include = showForm();
+        break;
+    case "connection" : $include = showConnect();
         break;
     case "insert_user" : insert_user();
+        break;
+    case "connect_user" : connect_user();
         break;
     default : $include = showForm();
 }
@@ -27,22 +31,35 @@ function showForm(){
     return "form.php";
 }
 
+function showConnect(){
+    return "formconnect.php";
+}
+
 function insert_user(){
+
     $utilisateur = new Utilisateur("","");
     $utilisateur->setPseudo($_POST["pseudo"]);
     $utilisateur->setMp($_POST["pass"]);
     $utilisateur->save_user();
-    header('Location:index.php?route=home');
+    $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "null";
+    $_SESSION["pseudo"] = $pseudo ;
+    //unset($_SESSION["pseudo"]);
+    header('Location:index.php?route=connection');
+
 }
 
+function connect_user() {
+    $utilisateur = new Utilisateur("","");
+    $utilisateur->setPseudo($_POST["pseudo"]);
+    $utilisateur->setMp($_POST["pass"]);
+    $utilisateur->verify_user();
+}
+
+//echo($_SESSION["pseudo"]);
 
 
 
 
-
-setcookie('pseudo',$_POST["pseudo"], time() + 182 * 24 * 60 * 60 , "/");
-
-//var_dump($_COOKIE["pseudo"]);
 
 
 
