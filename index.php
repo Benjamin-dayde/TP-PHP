@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_SESSION);
 
 
 require_once "utilisateur.php";
@@ -20,6 +21,8 @@ switch($route) {
         break;
     case "connect_user" : connect_user();
         break;
+    case "deconnect_user" : decoUser();
+        break;
     default : $include = showForm();
 }
 
@@ -39,11 +42,11 @@ function insert_user(){
 
     $utilisateur = new Utilisateur("","");
     $utilisateur->setPseudo($_POST["pseudo"]);
-    $utilisateur->setMp($_POST["pass"]);
+    $utilisateur->setMp(password_hash($_POST["pass"], PASSWORD_DEFAULT));
     $utilisateur->save_user();
     $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "null";
-    $_SESSION["pseudo"] = $pseudo ;
-    //unset($_SESSION["pseudo"]);
+    $_SESSION["utilisateur"] = $pseudo ;
+    
     header('Location:index.php?route=connection');
 
 }
@@ -55,7 +58,11 @@ function connect_user() {
     $utilisateur->verify_user();
 }
 
-//echo($_SESSION["pseudo"]);
+function decoUser() {
+    unset($_SESSION["utilisateur"]);
+    header('Location:index.php?route=connection');
+}
+
 
 
 
@@ -74,7 +81,7 @@ function connect_user() {
 <head>
     <meta charset="utf-8">
     <title>inscription</title>
-    <link rel="stylesheet" type="text/css" href="cv.css">
+    <link rel="stylesheet" type="text/css" href="todolist.css">
 </head>
 <body>
 

@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>inscription</title>
-    <link rel="stylesheet" type="text/css" href="cv.css">
+    <link rel="stylesheet" type="text/css" href="todolist.css">
 </head>
 <body>
     <header>
     </header>
     <div>
-        <article>
+        <article class=form>
             <p>
             <form method="POST" action="index.php?route=connect_user">
                  <fieldset>

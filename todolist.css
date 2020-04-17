@@ -1,0 +1,21 @@
+body{
+    background-image: url(img/Lesfleursdecerisier.jpg);
+    background-repeat: no-repeat;
+    
+}
+
+.form {
+    background-color: pink;
+    width: 30%;
+    text-align: center;
+    margin-left: 20%;
+    
+}
+
+.form, legend {
+    color: black;
+}
+
+.text {
+    color: black;
+}
