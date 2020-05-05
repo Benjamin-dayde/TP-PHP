@@ -2,13 +2,33 @@
 
 class Utilisateur extends DbConnect {
 
+    protected $iduser;
     public $pseudo;
     public $Mp;
 
 
-    function __construct(string $pseudo, string $Mp) {
-        $this->pseudo;
-        $this->Mp;
+    function __construct($iduser = null) {
+        parent:: __construct($iduser); 
+    }
+
+    function selectAll() {
+
+    }
+
+    function select() {
+
+    }
+
+    function insert() {
+
+    }
+
+    function update() {
+
+    }
+    
+    function delete() {
+
     }
 
     function getPseudo(): string {

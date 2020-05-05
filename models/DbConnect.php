@@ -1,11 +1,11 @@
 <?php
 
-class DbConnect extends Crud {
+abstract class DbConnect implements Crud {
 
-    protected $pdo
-    protected $id
+    protected $pdo;
+    protected $id;
 
-    function __construct($id) {
+    function __construct($id = null) {
         $this->PDO = new PDO(DATABASE, LOGIN, PASSWD);
         $this->id = $id;
     }
@@ -15,8 +15,12 @@ class DbConnect extends Crud {
     }
 
     abstract function selectAll();
+
     abstract function select();
+
     abstract function insert();
+
     abstract function update();
+    
     abstract function delete();
 }

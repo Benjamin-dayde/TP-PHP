@@ -4,10 +4,11 @@ var_dump($_SESSION);
 
 require "conf/global.php";
 
-
-require_once "utilisateur.php";
-
-require_once "tache.php";
+spl_autoload_register(function ($class) {
+    if(file_exists("models/$class.php")){
+        require_once "models/$class.php";
+    }
+});
 
 $route = isset($_GET["route"])? $_GET["route"] : "formulaire";
 
