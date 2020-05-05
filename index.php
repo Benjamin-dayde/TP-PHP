@@ -32,7 +32,7 @@ switch($route) {
 function showHome(){
     return "accueil.php";
 }
-
+  
 function showForm(){
     return "form.php";
 }
