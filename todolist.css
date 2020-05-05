@@ -17,5 +17,6 @@ body{
 }
 
 .text {
+    background-color: pink;
     color: black;
 }

@@ -1,7 +1,6 @@
 <?php
 
-
-class Utilisateur {
+class Utilisateur extends DbConnect {
 
     public $pseudo;
     public $Mp;
