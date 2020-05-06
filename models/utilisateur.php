@@ -12,7 +12,20 @@ class Utilisateur extends DbConnect {
     }
 
     function selectAll() {
+        $query = "SELECT * FROM user;";
+        $result = $this->pdo->prepare($query);
+        $result->execute();
+        $datas = $result->fetchAll();
 
+        $tab = [];
+
+        foreach ($datas as $data) {
+            $current = new Utilisateur();
+            $current->setId($data['id_user']);
+
+            array_push($tab, $current);
+        }
+        return $tab;
     }
 
     function select() {

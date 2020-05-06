@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+//var_dump($_SESSION);
 
 require "conf/global.php";
 
@@ -39,6 +39,11 @@ function showForm(){
 
 function showConnect(){
     return "formconnect.php";
+}
+
+function showMembre() {
+    $utilisateur = new Utilisateur();
+    $utilisateur->selectAll();
 }
 
 function insert_user(){
