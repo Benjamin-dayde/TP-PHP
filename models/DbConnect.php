@@ -10,9 +10,13 @@ abstract class DbConnect implements Crud {
         $this->id = $id;
     }
 
+ //----------- Récupéré une propriété d'une classe -----------------//
+
     function getId () : ?int {
         return $this->id;
     }
+
+//---------- Methode l'interface Crud -------------//
 
     abstract function selectAll();
 

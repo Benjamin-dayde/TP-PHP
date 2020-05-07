@@ -20,7 +20,7 @@
             <p>
             <form method="POST" action="index.php?route=insert_user">
                  <fieldset>
-                  <legend>information principale</legend>
+                  <legend>inscrivez vous</legend>
                     <label for="pseudo"> pseudo</label>
                     <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" required="required"/><br>
                     <label for="pass">mot de passe</label>

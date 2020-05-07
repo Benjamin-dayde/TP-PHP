@@ -2,13 +2,19 @@
 session_start();
 //var_dump($_SESSION);
 
+//----------- Implementation de la conncetion a la base de donnée -------------------//
+
 require "conf/global.php";
+
+//----------- Chargement automatique des classe ------------------//
 
 spl_autoload_register(function ($class) {
     if(file_exists("models/$class.php")){
         require_once "models/$class.php";
     }
 });
+
+//------------- Routeur (chemin d'accés vers le controleur) ---------------//
 
 $route = isset($_GET["route"])? $_GET["route"] : "formulaire";
 
@@ -29,6 +35,8 @@ switch($route) {
     default : $include = showForm();
 }
 
+//-------------- Controleur (redirige vers les page demandé) -----------------//
+
 function showHome(){
     return "accueil.php";
 }
@@ -41,17 +49,19 @@ function showConnect(){
     return "formconnect.php";
 }
 
-function showMembre() {
-    $utilisateur = new Utilisateur();
-    $utilisateur->selectAll();
-}
+// function showMembre() {
+//     $utilisateur = new Utilisateur();
+//     $utilisateur->selectAll();
+// }
+
+//-------------- Permet d'inséré un utilisateur dans la base de donnée --------------//
 
 function insert_user(){
 
     $utilisateur = new Utilisateur("","");
     $utilisateur->setPseudo($_POST["pseudo"]);
     $utilisateur->setMp(password_hash($_POST["pass"], PASSWORD_DEFAULT));
-    $utilisateur->save_user();
+    $utilisateur->insert();
     $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "null";
     $_SESSION["utilisateur"] = $pseudo ;
     
@@ -59,12 +69,16 @@ function insert_user(){
 
 }
 
+//-------------- Permet de connecté un utilisateur depuis la base de donnée --------------//
+
 function connect_user() {
     $utilisateur = new Utilisateur("","");
     $utilisateur->setPseudo($_POST["pseudo"]);
     $utilisateur->setMp($_POST["pass"]);
     $utilisateur->verify_user();
 }
+
+//-------------- Permet de deconnecté un utilisateur --------------//
 
 function decoUser() {
     unset($_SESSION["utilisateur"]);
