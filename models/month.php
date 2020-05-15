@@ -22,7 +22,4 @@ class Month {
         $this->month = $month;
     }
 
-    $month = new Month(5);
-
-    var_dump($month);
 }
