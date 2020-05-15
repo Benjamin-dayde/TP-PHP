@@ -22,7 +22,7 @@ $route = isset($_GET["route"])? $_GET["route"] : "formulaire";
 switch($route) {
     case "home" : $include = showHome() ;
         break;
-    case "formulaire" : $include = showForm();
+    case "formulaire" : $include = monthName();//showForm();
         break;
     case "connection" : $include = showConnect();
         break;
@@ -105,6 +105,12 @@ function connect_user() {
 function decoUser() {
     unset($_SESSION["utilisateur"]);
     header('Location:index.php?route=connection');
+}
+
+function monthName() {
+    $month = new Month();
+    $month->setMonthname("mai");
+    var_dump($month);
 }
 
 
