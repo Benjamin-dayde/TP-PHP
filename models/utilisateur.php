@@ -37,14 +37,29 @@ class Utilisateur extends DbConnect {
 
     function select() {
 
+
+
+    }
+
+ //----------------Recupére le pseudo d'un utilisateur dans la base de donnée -----------//
+
+    function selectByPseudo() {
+        $query = "SELECT pseudo, MP FROM user WHERE pseudo=:pseudo;";
+        $result = $this->pdo->prepare($query);
+        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $result->execute();
+        return $result->fetch();
     }
 
  //--------------- Permet de inseré une ligne dans une table de notre BDD ----------------//
 
     function insert() {
-
-        $query = "INSERT INTO user (pseudo, MP) VALUE ('$this->pseudo', '$this->Mp' )";
+        
+        $query = "INSERT INTO user (pseudo, MP) 
+        VALUE (:pseudo, :MP)";
         $result = $this->pdo->prepare($query);
+        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $result->bindValue(':MP', $this->Mp, PDO::PARAM_STR);
         $result->execute();
 
         $this->id = $this->pdo->lastInsertId();
@@ -76,7 +91,7 @@ class Utilisateur extends DbConnect {
         $this->pseudo = $pseudo;
     }
 
-//----------- Récupéré a une propriété d'une classe -----------------//
+//----------- Récupéré une propriété d'une classe -----------------//
 
     function getMp(): string {
         return $this->Mp;
@@ -103,14 +118,16 @@ class Utilisateur extends DbConnect {
 
     // function verify_user() {
 
-    // $connect = json_decode(file_get_contents("utilisateur.json"));
+    //     $connect = json_decode(file_get_contents("utilisateur.json"));
 
-    // foreach ($connect as $user1) {
-    //     if ($user1->pseudo == $_POST["pseudo"] && password_verify($this->Mp, $user1->motdepasse)) {
-    //         header('Location:index.php?route=home');
-    //     } else {
-    //         header('location:index.php?route=connection');
+    //     foreach ($connect as $user1) {
+    //         if ($user1->pseudo == $_POST["pseudo"] && password_verify($this->Mp, $user1->motdepasse)) {
+    //             return $user1;
+    //         } else {
+    //             return false;
+    //         }
     //     }
+
     // }
 
 };

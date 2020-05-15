@@ -58,12 +58,25 @@ function showConnect(){
 
 function insert_user(){
 
-    $utilisateur = new Utilisateur("","");
-    $utilisateur->setPseudo($_POST["pseudo"]);
-    $utilisateur->setMp(password_hash($_POST["pass"], PASSWORD_DEFAULT));
-    $utilisateur->insert();
-    $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "null";
-    $_SESSION["utilisateur"] = $pseudo ;
+    //--------Verifie si le pseudo et le mot de passe n'ont pas caractére speciaux---------//
+
+    if (preg_match('#^[a-zA-Z0-9]+$#', $_POST['pseudo']) && preg_match('#^[a-zA-Z0-9]+$#', $_POST['Mp']))  {
+
+        $utilisateur = new Utilisateur("","");
+        $utilisateur->setPseudo($_POST["pseudo"]);
+        $utilisateur->setMp(password_hash($_POST["pass"], PASSWORD_DEFAULT));
+        $pseudo = isset($_POST["pseudo"])? $_POST["pseudo"] : "null";
+        $_SESSION["utilisateur"] = $pseudo ;
+        $utilisateur->insert();
+        echo "Le pseudo entré est correct.";
+
+    } else {
+        echo "Le pseudo et le mot de passe sont incorrect.";
+    }
+
+    
+
+
     
     header('Location:index.php?route=connection');
 
@@ -72,10 +85,19 @@ function insert_user(){
 //-------------- Permet de connecté un utilisateur depuis la base de donnée --------------//
 
 function connect_user() {
+    
     $utilisateur = new Utilisateur("","");
     $utilisateur->setPseudo($_POST["pseudo"]);
     $utilisateur->setMp($_POST["pass"]);
-    $utilisateur->verify_user();
+    $verif = $utilisateur->selectByPseudo();
+
+    if($verif) {
+        header('Location:index.php?route=home');
+    } else {
+        header('Location:index.php?route=formulaire');
+    }
+    
+    
 }
 
 //-------------- Permet de deconnecté un utilisateur --------------//
